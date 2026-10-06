@@ -1,0 +1,14 @@
+# ==========================================
+# Challenge XAi — Project Requirements
+# ==========================================
+
+# Runtime Environment:
+# - Node.js >= 18.0.0
+# - npm >= 9.0.0
+
+# Node.js Dependencies (installed via `npm install`):
+# dotenv >= 16.4.7
+
+# Optional Python Environment (if using Python helper scripts):
+python-dotenv>=1.0.0
+requests>=2.31.0

@@ -1,0 +1,28 @@
+{
+  "name": "challenge-xai",
+  "version": "1.0.0",
+  "description": "Challenge XAi — Interactive Saudi Startup Simulator with AI advisor, 3D avatar, and voice narration",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "startup-simulator",
+    "saudi-arabia",
+    "ai-advisor",
+    "threejs",
+    "fish-audio",
+    "groq",
+    "arabic",
+    "gamification"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.7"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

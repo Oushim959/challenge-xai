@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Challenge XAi | محاكي رائد الأعمال السعودي - منصة تفاعلية تحاكي تحديات إطلاق المشاريع في المملكة العربية السعودية">
+    <title>Challenge XAi | محاكي رائد الأعمال السعودي</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Ambient Particle Canvas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Audio element for TTS -->
+    <audio id="tts-audio" preload="none"></audio>
+
+    <!-- Sticky Site Header (Challenge XAi) -->
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="header-brand">
+                <span class="brand-icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                </span>
+                <span class="brand-title">
+                    Challenge <span class="brand-en">XAi</span>
+                    <span style="font-size: 0.85rem; font-weight: 600; color: var(--foreground-muted); margin-right: 0.5rem;">| محاكي رائد الأعمال</span>
+                </span>
+            </div>
+            <nav class="header-nav">
+                <span class="header-badge">🇸🇦 رؤية 2030</span>
+                <button class="btn btn-outline" style="padding: 0.35rem 0.85rem; font-size: 0.78rem;" onclick="restartGame()">
+                    <span>🔄 بداية جديدة</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ============ SCREEN 1: HERO / SPLASH ============ -->
+    <div id="screen-splash" class="screen active">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-gradient-overlay"></div>
+            <div class="hero-grid">
+                <!-- Content Right -->
+                <div class="hero-content">
+                    <div class="hero-pill-badge">
+                        <span>🛡️</span>
+                        <span>شبكة مهنية ومحاكاة واقعية بخصوصية كاملة</span>
+                    </div>
+                    <h1 class="hero-title">
+                        تواصل مهني حقيقي،<br>
+                        <span class="highlight">وبهوية تحت سيطرتك.</span>
+                    </h1>
+                    <p class="hero-desc">
+                        Challenge XAi يضعك أمام التحديات الحقيقية لتأسيس وإطلاق مشروعك في المملكة العربية السعودية مع مستشارك الذكي "كريم". واجه العقبات التنظيمية والتمويلية والسوقية، وتعلّم كيف تقود شركتك نحو النجاح.
+                    </p>
+                    <div class="hero-actions">
+                        <button id="btn-start" class="btn btn-primary btn-large" onclick="showScreen('screen-setup'); unlockAudio();">
+                            <span>أنشئ مشروعك وابدأ المحاكاة</span>
+                            <span>⬅️</span>
+                        </button>
+                        <button class="btn btn-outline btn-large" onclick="showScreen('screen-setup'); unlockAudio();">
+                            <span>تصفّح الإعدادات</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Preview Card Left -->
+                <div class="hero-preview-card">
+                    <div class="preview-card-header">
+                        <span class="preview-avatar-icon">👤</span>
+                        <div>
+                            <p class="preview-meta-name">عضو مجهول</p>
+                            <p class="preview-meta-sub">المملكة العربية السعودية · التقنية المالية</p>
+                        </div>
+                    </div>
+                    <p class="preview-card-quote">
+                        «أكبر تحدٍ واجهناه هذا العام كان التوسع الإقليمي مع اختلاف الأنظمة التنظيمية وتوفير رأس المال الأولي. هل تختار التمويل الذاتي أم المستثمر الجريء؟»
+                    </p>
+                    <div class="preview-card-tags">
+                        <span class="tag-chip">تنظيمات</span>
+                        <span class="tag-chip">توسّع</span>
+                        <span class="tag-chip">تمويل</span>
+                        <span class="tag-chip">رؤية 2030</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Grid -->
+        <section class="features-section">
+            <div class="features-inner">
+                <h2 class="section-headline">لماذا Challenge XAi؟</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon-wrapper">🤖</span>
+                        <h3>مستشار 3D ذكي</h3>
+                        <p>شخصية ثلاثية الأبعاد وصوت باللغة العربية الفصحى يتفاعل مع قراراتك ويوجهك في كل مرحلة.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon-wrapper">🏛️</span>
+                        <h3>أنظمة وقوانين حقيقية</h3>
+                        <p>سيناريوهات مبنية على لوائح وزارة التجارة، ونظام الشركات، وهيئة الزكاة والضريبة والجمارك.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon-wrapper">💼</span>
+                        <h3>إدارة مالية وسوقية</h3>
+                        <p>تحديات الميزانية الحية، السمعة السوقية، ونقاط الخبرة مع عواقب فورية لكل قرار تتخذه.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon-wrapper">📊</span>
+                        <h3>تقرير تنفيذي شامل</h3>
+                        <p>تحليل كامل لأدائك بعد 7 مراحل مع تقييم نقاط القوة والمخاطر وإمكانية تحميل تقرير PDF.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sectors Preview -->
+        <section class="sectors-preview-section">
+            <h2 class="section-headline">قطاعات رواد الأعمال</h2>
+            <div class="sector-pills-wrap">
+                <span class="sector-pill">💻 التقنية والبرمجيات</span>
+                <span class="sector-pill">🛒 التجارة الإلكترونية</span>
+                <span class="sector-pill">🍽️ المطاعم والضيافة</span>
+                <span class="sector-pill">🏗️ العقارات والإنشاءات</span>
+                <span class="sector-pill">🏥 الرعاية الصحية والطب</span>
+                <span class="sector-pill">📚 التعليم والتدريب</span>
+                <span class="sector-pill">🚛 الخدمات اللوجستية</span>
+                <span class="sector-pill">🎭 السياحة والترفيه</span>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="footer-inner">
+                <p>© 2026 Challenge XAi — محاكي رائد الأعمال السعودي. جميع الحقوق محفوظة.</p>
+                <p>صُممت للمجتمع المهني العربي ورواد الأعمال في المملكة.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ============ SCREEN 2: SETUP ============ -->
+    <div id="screen-setup" class="screen">
+        <div class="setup-container">
+            <div class="setup-card">
+                <div class="setup-header">
+                    <h2>إعداد محاكاة المشروع</h2>
+                    <p>أدخل بياناتك وجهّز سيناريو شركتك الناشئة</p>
+                </div>
+
+                <div class="setup-form">
+                    <!-- Player Name -->
+                    <div class="form-group">
+                        <label for="player-name">
+                            <span>👤</span>
+                            <span>اسم المؤسس / رائد الأعمال</span>
+                        </label>
+                        <input type="text" id="player-name" placeholder="أدخل اسمك الكريم" class="input-field">
+                    </div>
+
+                    <!-- Sector Selection -->
+                    <div class="form-group">
+                        <label>
+                            <span>🏭</span>
+                            <span>قطاع المشروع</span>
+                        </label>
+                        <div class="sector-grid" id="sector-grid">
+                            <div class="sector-card selected" data-sector="تقنية" onclick="selectSector(this)">
+                                <span class="sector-emoji">💻</span>
+                                <span class="sector-name">تقنية</span>
+                            </div>
+                            <div class="sector-card" data-sector="تجارة إلكترونية" onclick="selectSector(this)">
+                                <span class="sector-emoji">🛒</span>
+                                <span class="sector-name">تجارة إلكترونية</span>
+                            </div>
+                            <div class="sector-card" data-sector="مطاعم وضيافة" onclick="selectSector(this)">
+                                <span class="sector-emoji">🍽️</span>
+                                <span class="sector-name">مطاعم وضيافة</span>
+                            </div>
+                            <div class="sector-card" data-sector="عقارات" onclick="selectSector(this)">
+                                <span class="sector-emoji">🏗️</span>
+                                <span class="sector-name">عقارات</span>
+                            </div>
+                            <div class="sector-card" data-sector="صحة وطب" onclick="selectSector(this)">
+                                <span class="sector-emoji">🏥</span>
+                                <span class="sector-name">صحة وطب</span>
+                            </div>
+                            <div class="sector-card" data-sector="تعليم وتدريب" onclick="selectSector(this)">
+                                <span class="sector-emoji">📚</span>
+                                <span class="sector-name">تعليم وتدريب</span>
+                            </div>
+                            <div class="sector-card" data-sector="لوجستيات" onclick="selectSector(this)">
+                                <span class="sector-emoji">🚛</span>
+                                <span class="sector-name">لوجستيات</span>
+                            </div>
+                            <div class="sector-card" data-sector="ترفيه وسياحة" onclick="selectSector(this)">
+                                <span class="sector-emoji">🎭</span>
+                                <span class="sector-name">ترفيه وسياحة</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Attitude Slider -->
+                    <div class="form-group">
+                        <label>
+                            <span>🎚️</span>
+                            <span>حدة تدقيق المستشار وسرعة التحديات</span>
+                        </label>
+                        <div class="attitude-slider-container">
+                            <div class="attitude-labels">
+                                <span>😊 متساهل وداعم</span>
+                                <span>😤 صارم وتدقيق عالي</span>
+                            </div>
+                            <input type="range" id="attitude-slider" min="1" max="5" value="3" class="attitude-slider">
+                            <div class="attitude-value" id="attitude-value">متوسط ومتوازن</div>
+                        </div>
+                    </div>
+
+                    <!-- Business Model Upload -->
+                    <div class="form-group">
+                        <label>
+                            <span>📄</span>
+                            <span>خطة العمل أو ملخص الفكرة (اختياري)</span>
+                        </label>
+                        <div class="upload-area" id="upload-area" onclick="document.getElementById('file-input').click()">
+                            <input type="file" id="file-input" accept=".txt,.pdf,.doc,.docx" style="display:none" onchange="handleFileUpload(event)">
+                            <div class="upload-icon">📁</div>
+                            <p class="upload-text">اضغط لرفع ملف خطة العمل</p>
+                            <p class="upload-subtext">أو اتركها فارغة وسنقوم بإنشاء سيناريو مخصص لقطاعك تلقائياً</p>
+                            <div class="upload-status" id="upload-status"></div>
+                        </div>
+                    </div>
+
+                    <!-- Voice Toggle -->
+                    <div class="form-group">
+                        <div class="toggle-container">
+                            <span>تفعيل التعليق الصوتي للمستشار (فصحى)</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="voice-toggle" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button id="btn-launch" class="btn btn-primary btn-large" style="width: 100%; margin-top: 0.5rem;" onclick="launchGame()">
+                        <span>🚀</span>
+                        <span>إطلاق المحاكاة وبدء المرحلة الأولى</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ SCREEN 3: GAME ============ -->
+    <div id="screen-game" class="screen">
+        <div class="game-layout">
+            <!-- Top HUD Dashboard -->
+            <div class="game-hud">
+                <div class="hud-left">
+                    <div class="hud-item">
+                        <span class="hud-label">رائد الأعمال</span>
+                        <span class="hud-value" id="hud-player-name">---</span>
+                    </div>
+                    <div class="hud-item">
+                        <span class="hud-label">القطاع</span>
+                        <span class="hud-value" id="hud-sector">---</span>
+                    </div>
+                </div>
+
+                <div class="hud-center">
+                    <div class="stage-indicator">
+                        <span class="stage-label">المرحلة</span>
+                        <span class="stage-number" id="stage-number">1</span>
+                        <span class="stage-total">/ 7</span>
+                    </div>
+                    <div class="stage-name" id="stage-name">التأسيس والتسجيل</div>
+                </div>
+
+                <div class="hud-right">
+                    <div class="hud-item">
+                        <span class="hud-label">النقاط</span>
+                        <span class="hud-value score-value" id="hud-score">0</span>
+                    </div>
+                    <div class="hud-item">
+                        <span class="hud-label">الميزانية الحالية</span>
+                        <span class="hud-value budget-value" id="hud-budget">500,000 ر.س</span>
+                    </div>
+                    <div class="hud-item">
+                        <span class="hud-label">السمعة المهنية</span>
+                        <div class="reputation-bar">
+                            <div class="reputation-fill" id="reputation-fill" style="width:50%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status Effects Banner -->
+            <div class="status-effects-bar" id="status-effects-bar"></div>
+
+            <!-- Consequence Popup Modal -->
+            <div class="consequence-popup" id="consequence-popup" style="display:none;">
+                <div class="consequence-icon" id="consequence-icon"></div>
+                <div class="consequence-text" id="consequence-text"></div>
+            </div>
+
+            <!-- Main Game Area -->
+            <div class="game-main">
+                <!-- AI Character Panel (Profile Style) -->
+                <div class="ai-panel">
+                    <div class="ai-avatar-container">
+                        <div class="avatar-3d-wrapper" id="avatar-3d-wrapper">
+                            <div id="avatar-3d-container"></div>
+                            <div class="avatar-3d-loading" id="avatar-loading">
+                                <div class="avatar-loading-spinner"></div>
+                                <span id="avatar-loading-text">جاري تحميل المستشار...</span>
+                            </div>
+                        </div>
+                        <div class="speaking-indicator" id="speaking-indicator">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <div class="ai-name">كريم</div>
+                        <div class="ai-title">المستشار السعودي التنفيذي</div>
+                        <div class="voice-badge" id="voice-engine-badge" style="display:none;"></div>
+                        <button id="btn-replay-voice" class="voice-replay-btn" onclick="replayCurrentVoice()" title="إعادة تشغيل الصوت">
+                            <span>🔊</span>
+                            <span>استمع للتعليق</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Chat / Decision Area -->
+                <div class="dialogue-area">
+                    <div class="dialogue-messages" id="dialogue-messages"></div>
+
+                    <!-- Timer Bar -->
+                    <div class="timer-container" id="timer-container" style="display:none;">
+                        <div class="timer-bar">
+                            <div class="timer-fill" id="timer-fill"></div>
+                        </div>
+                        <div class="timer-text" id="timer-text">60 ثانية</div>
+                    </div>
+
+                    <!-- Multiple Choice Cards -->
+                    <div class="choices-container" id="choices-container" style="display:none;">
+                        <div class="choices-header">
+                            <span>اختر القرار الأنسب لمشروعك:</span>
+                        </div>
+                        <div class="choices-grid" id="choices-grid"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Connected Milestone Stepper -->
+            <div class="progress-container">
+                <div class="progress-stages" id="progress-stages">
+                    <div class="progress-stage active" data-stage="1">
+                        <div class="progress-dot"></div>
+                        <span>1. التأسيس</span>
+                    </div>
+                    <div class="progress-connector"></div>
+                    <div class="progress-stage" data-stage="2">
+                        <div class="progress-dot"></div>
+                        <span>2. التراخيص</span>
+                    </div>
+                    <div class="progress-connector"></div>
+                    <div class="progress-stage" data-stage="3">
+                        <div class="progress-dot"></div>
+                        <span>3. التمويل</span>
+                    </div>
+                    <div class="progress-connector"></div>
+                    <div class="progress-stage" data-stage="4">
+                        <div class="progress-dot"></div>
+                        <span>4. التوظيف</span>
+                    </div>
+                    <div class="progress-connector"></div>
+                    <div class="progress-stage" data-stage="5">
+                        <div class="progress-dot"></div>
+                        <span>5. الضرائب</span>
+                    </div>
+                    <div class="progress-connector"></div>
+                    <div class="progress-stage" data-stage="6">
+                        <div class="progress-dot"></div>
+                        <span>6. التشغيل</span>
+                    </div>
+                    <div class="progress-connector"></div>
+                    <div class="progress-stage" data-stage="7">
+                        <div class="progress-dot"></div>
+                        <span>7. الإطلاق</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ SCREEN 4: VERDICT ============ -->
+    <div id="screen-verdict" class="screen">
+        <div class="verdict-container">
+            <div class="verdict-header">
+                <div class="verdict-icon" id="verdict-icon">⚖️</div>
+                <h2 class="verdict-title" id="verdict-title">النتيجة النهائية للمشروع</h2>
+                <div class="verdict-result" id="verdict-result"></div>
+            </div>
+
+            <div class="verdict-stats" id="verdict-stats"></div>
+            <div class="verdict-details" id="verdict-details"></div>
+
+            <div class="verdict-actions">
+                <button class="btn btn-primary btn-large" onclick="generateReport()">
+                    <span>📊</span>
+                    <span>استعراض التقرير الكامل</span>
+                </button>
+                <button class="btn btn-outline btn-large" onclick="restartGame()">
+                    <span>🔄</span>
+                    <span>أعد المحاكاة من جديد</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ SCREEN 5: REPORT ============ -->
+    <div id="screen-report" class="screen">
+        <div class="report-container">
+            <div class="report-header">
+                <h2>📊 تقرير أداء المشروع التنفيذي</h2>
+                <p>تحليل استراتيجي مفصل لمسار شركتك وقراراتك الريادية</p>
+            </div>
+            <div class="report-content" id="report-content"></div>
+            <div class="report-actions">
+                <button class="btn btn-primary btn-large" onclick="downloadReport()">
+                    <span>⬇️</span>
+                    <span>تحميل تقرير PDF</span>
+                </button>
+                <button class="btn btn-outline btn-large" onclick="restartGame()">
+                    <span>🔄</span>
+                    <span>العودة للرئيسية</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay" style="display:none;">
+        <div class="loading-spinner">
+            <div class="spinner-ring"></div>
+            <p class="loading-text">جاري معالجة البيانات...</p>
+        </div>
+    </div>
+
+    <!-- Three.js 3D Engine Scripts -->
+    <script src="libs/three.min.js"></script>
+    <script src="libs/fflate.min.js"></script>
+    <script src="libs/FBXLoader.js"></script>
+    <script src="libs/GLTFLoader.js"></script>
+    <!-- Runtime Config (injected from .env via server) -->
+    <script>
+        // Fetch client-side config from server (Groq API key)
+        fetch('/api/config').then(r => r.json()).then(c => {
+            window.__CONFIG = c;
+        }).catch(() => {});
+    </script>
+    <script src="js/avatar3d.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
