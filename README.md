@@ -96,7 +96,7 @@ AI_Simulator/
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/challenge-xai.git
+git clone https://github.com/Oushim959/challenge-xai.git
 cd challenge-xai
 ```
 
